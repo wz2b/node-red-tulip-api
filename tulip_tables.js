@@ -80,10 +80,15 @@ module.exports = function (RED) {
 
           // Request went through, forward response as node output
           const resBody = res.body == '' ? res.body : JSON.parse(res.body);
-          const msg = {
+          let msg = {
             response: res,
             payload: resBody,
           };
+
+          if( config.includeTableId && pathParams['tableId']) {
+            msg.tableId = pathParams['tableId']
+          }
+
           send(msg);
           done();
         }

@@ -40,6 +40,7 @@
       // Bool parameters
       includeDeleted: { value: false },
       includeTotalCount: { value: false },
+      includeTableId: { value: true },
       allowRecordsInUse: { value: false },
 
       // Arrays
@@ -286,6 +287,13 @@
       style='margin-left:10px; vertical-align:top; width:auto'>
     <label for='node-input-includeTotalCount' style='width:auto'>Include total count</label>
   </div>
+
+  <div class='form-row' id='div-node-input-includeTableId' hidden>
+    <input type='checkbox' id='node-input-includeTableId' autocomplete='off'
+           style='margin-left:10px; vertical-align:top; width:auto'>
+    <label for='node-input-includeTableId' style='width:auto'>Include Table ID in Output</label>
+  </div>
+
   <div class='form-row' id='div-node-input-allowRecordsInUse' hidden>
     <input type='checkbox' id='node-input-allowRecordsInUse' autocomplete='off'
       style='margin-left:10px; vertical-align:top; width:auto'>
@@ -447,6 +455,11 @@
     if you the "Table ID" field set to <code>id1</code> but send an input with <code>msg.tableId=id2</code>, the request will set parameter
     <code>tableId</code> to <code>id2</code>. The parameters <code>sortOptions</code> and <code>filters</code> can be set by the <code>msg</code>,
     and the request body (if a POST or PUT request) can be set by <code>msg.body</code>.
+  </p>
+  <p>
+    For table requests that are against a specific table (meaning those that include a tableId as part of the request)
+    that ID will be placed into the result as <code>msg.tableId</code> of the response.  This behavior can be disabled by
+    un-checking the <code>Include table ID in Output</code> option.
   </p>
   <p>
     You can configure the HTTP agent to use keep-alive by checking "Enable Connection Keep-Alive" (default=<code>true</code>),
